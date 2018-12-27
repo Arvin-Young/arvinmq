@@ -1,12 +1,14 @@
 package com.arvin.mq.arvinmq.concurrency;
 
+import org.junit.Test;
+
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class LatchTest {
     //private int iCounter = 0;
 
-    public static void main(String[] args) throws InterruptedException {
+    @Test
+    public void main1(String[] args) throws InterruptedException {
         Runnable taskTemp = new Runnable() {
             //private AtomicInteger iCounter = new AtomicInteger(0);
             private int iCounter;
@@ -28,7 +30,7 @@ public class LatchTest {
         latchTest.startAllTasksInOnce(5, taskTemp);
     }
 
-    public long startAllTasksInOnce(int threadNum, final Runnable task) throws InterruptedException {
+    private long startAllTasksInOnce(int threadNum, final Runnable task) throws InterruptedException {
         final CountDownLatch startGate = new CountDownLatch(1);
         final CountDownLatch endGate = new CountDownLatch(threadNum);
         for (int i= 0; i < threadNum; i++) {
